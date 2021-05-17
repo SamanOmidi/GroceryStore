@@ -3,23 +3,25 @@
 
 #include <QString>
 #include <QVector>
-using namespace std;
+#include <iostream>
+#include <QTextStream>
+QTextStream cout(stdout);
+QTextStream cin(stdin);
 
-struct Item {
-    QString name;
-    QString nameOfCompany;
-    QString type;
-    int count;
-    int price;
+struct item {
+    QString Name;
+    QString ProductionCompanyName;
+    QString Type;
+    int Count = 0;
+    int Price;
 };
-
-class List
+class shop
 {
 private:
-    QVector<Item> items ;
+    QVector<item> items ;
 public:
     //constructor
-    List();
+    shop();
     //adding item to our list
     void add_item (QString name);
     //removing item from our list
@@ -31,11 +33,21 @@ public:
     //display all the items of the list
     void display();
     //grouping items
+
     //searching groups
     //displaying items of a group
     //making an account system for the program
     //making a store and load file
-
 };
+
+class group : public shop
+{
+private:
+    QVector<item> groupItems ;
+};
+
+
+
+
 
 #endif // LIST_H

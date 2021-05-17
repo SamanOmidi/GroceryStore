@@ -1,11 +1,14 @@
 #include "widget.h"
-
 #include <QApplication>
-
-int main(int argc, char *argv[])
+using namespace std;
+//int main(int argc, char *argv[])
+//{
+//    QApplication a(argc, argv);
+//    Widget w;
+//    w.show();
+//    return a.exec();
+//}
+int main()
 {
-    QApplication a(argc, argv);
-    Widget w;
-    w.show();
-    return a.exec();
+    shop a ;
 }
