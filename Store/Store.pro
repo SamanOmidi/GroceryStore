@@ -18,16 +18,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     additem.cpp \
     item.cpp \
+    loginpage.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
     additem.h \
     item.h \
+    loginpage.h \
     mainwindow.h
 
 FORMS += \
     additem.ui \
+    loginpage.ui \
     mainwindow.ui
 
 # Default rules for deployment.

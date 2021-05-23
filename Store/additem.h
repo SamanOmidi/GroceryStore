@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <item.h>
+#include <QMessageBox>
 
 namespace Ui {
 class AddItem;

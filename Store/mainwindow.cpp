@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    if(StartOfProgram)
+        runLoginPage();
 
 }
 
@@ -21,11 +23,13 @@ void MainWindow::on_addnewitembutton_clicked()
     AddItem AddItem(newItem , nullptr);
     AddItem.setModal(true);
     AddItem.exec();
-    list.push_back(newItem);
-    ui->productlist->addItem(newItem->getName());
+    if(newItem != nullptr){
+        list.push_back(newItem);
+        ui->productlist->addItem(newItem->getName());
+    }
 }
 
-
+//removing selected item on the list
 
 void MainWindow::on_removeitembutton_clicked()
 {
@@ -38,7 +42,19 @@ void MainWindow::on_removeitembutton_clicked()
 
         delete ui->productlist->currentItem();
     }
-
 }
+
+//running login page at the start of program
+
+
+void MainWindow::runLoginPage()
+{
+    StartOfProgram = false;
+    loginpage login;
+    login.setModal(true);
+    login.exec();
+}
+
+
 
 
