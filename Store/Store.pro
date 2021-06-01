@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     additem.cpp \
+    displayitems.cpp \
     item.cpp \
     loginpage.cpp \
     main.cpp \
@@ -24,12 +25,14 @@ SOURCES += \
 
 HEADERS += \
     additem.h \
+    displayitems.h \
     item.h \
     loginpage.h \
     mainwindow.h
 
 FORMS += \
     additem.ui \
+    displayitems.ui \
     loginpage.ui \
     mainwindow.ui
 

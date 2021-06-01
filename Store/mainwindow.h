@@ -5,6 +5,7 @@
 #include <item.h>
 #include <additem.h>
 #include "loginpage.h"
+#include "displayitems.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -23,9 +24,12 @@ private slots:
     void on_removeitembutton_clicked();
     void runLoginPage();
 
+    void on_displaybutton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QVector<Item *> list;
     bool StartOfProgram = true;
+    QString user;
 };
 #endif // MAINWINDOW_H

@@ -13,6 +13,10 @@ loginpage::~loginpage()
     delete ui;
 }
 
+QString loginpage::username()
+{
+    return ui->usernameline->text();
+}
 
 void loginpage::on_registerbutton_clicked()
 {
@@ -32,16 +36,31 @@ void loginpage::on_registerbutton_clicked()
     //creating data.txt as file to save data on it
 
 
-    QFile data("data.txt");
+    QFile data(ui->usernameline->text()+".txt");
+
+    if(data.exists(ui->usernameline->text()+".txt"))
+    {
+        QMessageBox errorDuplicateAccount;
+        errorDuplicateAccount.setText("This User Name Already Exists.");
+        errorDuplicateAccount.exec();
+        return;
+    }
+
+    else
+    {
+
+
     data.open(QIODevice::WriteOnly | QIODevice::Text);
 
     QTextStream out (&data);
 
-    out << "username : " << ui->usernameline->text() << '\n';
-    out << "password : " << ui->passwordline->text() << '\n';
+    out << "username:" << ui->usernameline->text() << '\n';
+    out << "password:" << ui->passwordline->text() << '\n';
 
     data.close();
     this -> close();
+
+    }
 
 }
 
@@ -50,23 +69,13 @@ void loginpage::on_loginbutton_clicked()
 {
     //loading data.txt to read data
 
-    QFile data("data.txt");
-    data.open(QIODevice::ReadOnly | QIODevice::Text);
+    QFile data(ui->usernameline->text()+".txt");
 
-    QTextStream in(&data);
+    if(data.exists(ui->usernameline->text()+".txt")){
 
-    if(in.atEnd() == true)
-    {
-        QMessageBox error;
-        error.setText("You Don't Have An Account.\nWe Make A New One For You :) .");
-        error.show();
-        error.exec();
-        this->on_registerbutton_clicked();
-        this->close();
-    }
+        data.open(QIODevice::ReadOnly | QIODevice::Text);
+        QTextStream in(&data);
 
-    else
-    {
         QString line;
         QStringList username;
         QStringList password;
@@ -84,19 +93,30 @@ void loginpage::on_loginbutton_clicked()
             }
         }
 
-
-
         if(username.at(1) == ui->usernameline->text() && password.at(1) == ui->passwordline->text())
         {
             QMessageBox welcome;
-            welcome.setText("Welcome " + username.at(1) + "To The Shop");
+            welcome.setText("Welcome " + username.at(1) + " To The Shop");
             welcome.show();
             welcome.exec();
             data.close();
             this->close();
         }
+        else
+        {
+            QMessageBox InvalidInputs;
+            InvalidInputs.setText("Incorrect User Or Password...");
+            InvalidInputs.exec();
+            return;
+        }
+    }
+    else
+    {
+        QMessageBox noFile;
+        noFile.setText("Please Make A New Account.");
+        noFile.exec();
+        return;
     }
 
     data.close();
-
 }

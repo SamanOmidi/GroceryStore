@@ -53,7 +53,36 @@ void MainWindow::runLoginPage()
     loginpage login;
     login.setModal(true);
     login.exec();
+    this->user = login.username();
 }
+
+
+
+
+
+void MainWindow::on_displaybutton_clicked()
+{
+    DisplayItems display;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

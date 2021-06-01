@@ -15,8 +15,10 @@ class loginpage : public QDialog
     Q_OBJECT
 
 public:
+
     explicit loginpage(QWidget *parent = nullptr);
     ~loginpage();
+    QString username();
 
 private slots:
     void on_registerbutton_clicked();
