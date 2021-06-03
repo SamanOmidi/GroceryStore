@@ -21,20 +21,23 @@ SOURCES += \
     item.cpp \
     loginpage.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    sellitem.cpp
 
 HEADERS += \
     additem.h \
     displayitems.h \
     item.h \
     loginpage.h \
-    mainwindow.h
+    mainwindow.h \
+    sellitem.h
 
 FORMS += \
     additem.ui \
     displayitems.ui \
     loginpage.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    sellitem.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

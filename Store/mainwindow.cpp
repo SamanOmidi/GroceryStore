@@ -46,7 +46,6 @@ void MainWindow::on_removeitembutton_clicked()
 
 //running login page at the start of program
 
-
 void MainWindow::runLoginPage()
 {
     StartOfProgram = false;
@@ -56,29 +55,26 @@ void MainWindow::runLoginPage()
     this->user = login.username();
 }
 
-
-
-
+//display all items infos
 
 void MainWindow::on_displaybutton_clicked()
 {
     DisplayItems display;
-
-
+    display.Display_items(list);
+    display.show();
+    display.exec();
 }
 
+//sell an item to a customer
 
-
-
-
-
-
-
-
-
-
-
-
+void MainWindow::on_sellbutton_clicked()
+{
+    int index = ui->productlist->currentRow();
+    SellItem sellPage;
+    sellPage.sellItem(list,index);
+    sellPage.show();
+    sellPage.exec();
+}
 
 
 

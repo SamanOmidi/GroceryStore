@@ -2,6 +2,7 @@
 #define DISPLAYITEMS_H
 
 #include <QDialog>
+#include "item.h"
 
 namespace Ui {
 class DisplayItems;
@@ -14,6 +15,10 @@ class DisplayItems : public QDialog
 public:
     explicit DisplayItems(QWidget *parent = nullptr);
     ~DisplayItems();
+    void Display_items(QVector<Item *> & itemsVector);
+
+private slots:
+    void on_closebutton_clicked();
 
 private:
     Ui::DisplayItems *ui;
