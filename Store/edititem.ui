@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddItem</class>
- <widget class="QDialog" name="AddItem">
+ <class>EditItem</class>
+ <widget class="QDialog" name="EditItem">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>396</width>
-    <height>446</height>
+    <height>429</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>20</y>
+     <width>311</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>#Note: Just Fill Options You Want To Change.</string>
+   </property>
+  </widget>
   <widget class="QPushButton" name="confirmbutton">
    <property name="geometry">
     <rect>
      <x>140</x>
-     <y>337</y>
+     <y>340</y>
      <width>111</width>
      <height>31</height>
     </rect>
@@ -34,8 +52,8 @@
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>50</y>
+     <x>50</x>
+     <y>90</y>
      <width>301</width>
      <height>186</height>
     </rect>

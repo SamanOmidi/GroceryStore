@@ -14,6 +14,7 @@ DisplayItems::~DisplayItems()
 }
 void DisplayItems::Display_items(QVector<Item *> &itemsVector)
 {
+
     for(int i=0 ; i<itemsVector.size() ; i++)
     {
         ui->itemsText->append(QString::number(i+1) + ". " + "Name = " + itemsVector[i]->getName() + '\n'

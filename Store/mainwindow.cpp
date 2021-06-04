@@ -70,15 +70,20 @@ void MainWindow::on_displaybutton_clicked()
 void MainWindow::on_sellbutton_clicked()
 {
     int index = ui->productlist->currentRow();
-    SellItem sellPage;
-    sellPage.sellItem(list,index);
-    sellPage.show();
-    sellPage.exec();
+    SellItem sellpage(list,index);
+    sellpage.show();
+    sellpage.exec();
 }
 
+//edit an item
 
-
-
+void MainWindow::on_edititembutton_clicked()
+{
+    int index = ui->productlist->currentRow();
+    EditItem editPage(list,index);
+    editPage.show();
+    editPage.exec();
+}
 
 
 

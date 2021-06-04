@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>grouplist</class>
+ <widget class="QMainWindow" name="grouplist">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -83,6 +83,11 @@
       <verstretch>0</verstretch>
      </sizepolicy>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
    </widget>
    <widget class="QPushButton" name="displaybutton">
     <property name="geometry">
@@ -127,7 +132,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

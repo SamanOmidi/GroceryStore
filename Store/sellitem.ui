@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>447</width>
-    <height>502</height>
+    <height>423</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -163,50 +163,11 @@
     </font>
    </property>
   </widget>
-  <widget class="QLabel" name="ttlprclabel">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>330</y>
-     <width>111</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
-   </property>
-   <property name="text">
-    <string>Total Price:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="totalpricelabel">
-   <property name="geometry">
-    <rect>
-     <x>170</x>
-     <y>330</y>
-     <width>201</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <pointsize>11</pointsize>
-    </font>
-   </property>
-   <property name="frameShape">
-    <enum>QFrame::Panel</enum>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
   <widget class="QPushButton" name="sellbutton">
    <property name="geometry">
     <rect>
      <x>100</x>
-     <y>430</y>
+     <y>340</y>
      <width>93</width>
      <height>28</height>
     </rect>
@@ -224,7 +185,7 @@
    <property name="geometry">
     <rect>
      <x>260</x>
-     <y>430</y>
+     <y>340</y>
      <width>93</width>
      <height>28</height>
     </rect>
