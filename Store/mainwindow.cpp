@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
         runLoginPage();
 
     //start music at the start of program
+
     if(this->musicPlay)
     {
         QMediaPlaylist * playlist = new QMediaPlaylist();
@@ -47,6 +48,13 @@ void MainWindow::on_addnewitembutton_clicked()
 
 void MainWindow::on_removeitembutton_clicked()
 {
+    //check if we have any item
+
+    if(list.size() <= 0)
+        return;
+
+    //sell selected item
+
     int index = ui->productlist->currentRow();
     if(index >= 0)
     {
@@ -67,6 +75,8 @@ void MainWindow::runLoginPage()
     login.setModal(true);
     login.exec();
     this->user = login.username();
+    if(this->user == nullptr)
+        this->close();
 }
 
 //display all items infos
@@ -83,6 +93,11 @@ void MainWindow::on_displaybutton_clicked()
 
 void MainWindow::on_sellbutton_clicked()
 {
+    //check if we have any item
+
+    if(list.size() <= 0)
+        return;
+
     int index = ui->productlist->currentRow();
     SellItem sellpage(list,index);
     sellpage.show();
@@ -93,6 +108,11 @@ void MainWindow::on_sellbutton_clicked()
 
 void MainWindow::on_edititembutton_clicked()
 {
+    //check if we have any item
+
+    if(list.size() <= 0)
+        return;
+
     int index = ui->productlist->currentRow();
     EditItem editPage(list,index);
     editPage.show();
@@ -103,6 +123,11 @@ void MainWindow::on_edititembutton_clicked()
 
 void MainWindow::on_searchitemsbutton_clicked()
 {
+    //check if we have any item
+
+    if(list.size() <= 0)
+        return;
+
     SearchItem searchPage(list);
     searchPage.show();
     searchPage.exec();

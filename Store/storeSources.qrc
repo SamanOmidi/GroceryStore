@@ -6,4 +6,7 @@
         <file>Tsuki sayu Yoru – Fu rin Ka zan Fitgirl.mp3</file>
         <file>Tsuki sayu Yoru – Fu rin Ka zan Original.mp3</file>
     </qresource>
+    <qresource prefix="/images">
+        <file>nier_image.jpg</file>
+    </qresource>
 </RCC>

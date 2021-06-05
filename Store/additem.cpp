@@ -8,8 +8,6 @@ AddItem::AddItem(Item* &newItem,QWidget *parent) :
 {
     ui->setupUi(this);
     this->newItem = &newItem;
-    //connect(ui->confirmbutton,&QPushButton::clicked,this,&AddItem::on_confirmbutton_clicked);
-    //connect(ui->confirmbutton,SIGNAL(clicked()),this,SLOT(close()));
 }
 
 AddItem::~AddItem()
@@ -19,12 +17,12 @@ AddItem::~AddItem()
 
 void AddItem::on_confirmbutton_clicked()
 {
-    QString name = ui->nameline->text();
-    QString type = ui->typeline->text();
-    QString companyName = ui->companyline->text();
-    QString price_s = ui->priceline->text();
+    QString name = ui->NameLine->text();
+    QString type = ui->TypeLine->text();
+    QString companyName = ui->CompanyLine->text();
+    QString price_s = ui->PriceLine->text();
     double price = price_s.toDouble();
-    QString quantity_s = ui->quantityline->text();
+    QString quantity_s = ui->QuantityLine->text();
     int quantity = quantity_s.toInt();
     if(name == "" || type == "" || companyName == ""
             || price_s == "" || quantity_s == "")

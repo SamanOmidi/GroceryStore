@@ -31,8 +31,8 @@ void SellItem::on_sellbutton_clicked()
     {
         this->list[this->index]->setQuantity(this->list[this->index]->getQuantity()-ui->numberofsellspinbox->value());
         QMessageBox sellDone;
-        sellDone.setText("You Have Successfully Sold " + QString::number(this->list[this->index]->getQuantity())
-                + " Of " + this->list[this->index]->getName());
+        sellDone.setText("You Have Successfully Sold " + QString::number(ui->numberofsellspinbox->value())
+                         + " Of " + this->list[this->index]->getName());
         sellDone.show();
         sellDone.exec();
         this->close();

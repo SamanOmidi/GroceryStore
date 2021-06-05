@@ -26,12 +26,12 @@ public:
 
     void playMusic();
 
+    void runLoginPage();
+
 private slots:
     void on_addnewitembutton_clicked();
 
     void on_removeitembutton_clicked();
-
-    void runLoginPage();
 
     void on_displaybutton_clicked();
 
@@ -45,10 +45,19 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+    //vector of items
     QVector<Item *> list;
+
+    //checking start of program to run login page
     bool StartOfProgram = true;
+
+    //saving the username of the person is using the program
     QString user;
+
+    //checking and playing the music of program
     bool musicPlay = true;
     QMediaPlayer * music;
+
 };
 #endif // MAINWINDOW_H
