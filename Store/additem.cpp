@@ -27,7 +27,7 @@ void AddItem::on_confirmbutton_clicked()
     QString quantity_s = ui->quantityline->text();
     int quantity = quantity_s.toInt();
     if(name == "" || type == "" || companyName == ""
-       || price_s == "" || quantity_s == "")
+            || price_s == "" || quantity_s == "")
     {
         QMessageBox error ;
         error.setText("Invalid Inputs!");

@@ -6,8 +6,8 @@ Item::Item()
 }
 
 Item::Item(QString name , QString type ,
-     QString ProductionCompany ,
-     double price , int quantity)
+           QString ProductionCompany ,
+           double price , int quantity)
 {
     this->name = name;
     this->type = type;

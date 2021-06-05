@@ -8,6 +8,7 @@
 #include "displayitems.h"
 #include "sellitem.h"
 #include "edititem.h"
+#include "searchitem.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,6 +31,8 @@ private slots:
     void on_sellbutton_clicked();
 
     void on_edititembutton_clicked();
+
+    void on_searchitemsbutton_clicked();
 
 private:
     Ui::MainWindow *ui;

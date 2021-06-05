@@ -23,6 +23,7 @@ SOURCES += \
     loginpage.cpp \
     main.cpp \
     mainwindow.cpp \
+    searchitem.cpp \
     sellitem.cpp
 
 HEADERS += \
@@ -32,6 +33,7 @@ HEADERS += \
     item.h \
     loginpage.h \
     mainwindow.h \
+    searchitem.h \
     sellitem.h
 
 FORMS += \
@@ -40,6 +42,7 @@ FORMS += \
     edititem.ui \
     loginpage.ui \
     mainwindow.ui \
+    searchitem.ui \
     sellitem.ui
 
 # Default rules for deployment.

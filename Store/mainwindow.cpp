@@ -85,6 +85,15 @@ void MainWindow::on_edititembutton_clicked()
     editPage.exec();
 }
 
+//search among items
+
+void MainWindow::on_searchitemsbutton_clicked()
+{
+    SearchItem searchPage(list);
+    searchPage.show();
+    searchPage.exec();
+}
+
 
 
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>grouplist</class>
- <widget class="QMainWindow" name="grouplist">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>550</width>
+    <height>645</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -74,7 +74,7 @@
       <x>20</x>
       <y>30</y>
       <width>256</width>
-      <height>192</height>
+      <height>231</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -122,7 +122,76 @@
      </font>
     </property>
     <property name="text">
-     <string>Sell Item</string>
+     <string>Sell Selected Item</string>
+    </property>
+   </widget>
+   <widget class="QListWidget" name="grouplist">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>256</width>
+      <height>192</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="addnewgroupbutton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>320</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Add New Group</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="displaygroupitemsbutton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>360</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Display Group Items</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="searchitemsbutton">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>230</y>
+      <width>221</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Search Items</string>
     </property>
    </widget>
   </widget>
@@ -131,7 +200,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>550</width>
      <height>22</height>
     </rect>
    </property>

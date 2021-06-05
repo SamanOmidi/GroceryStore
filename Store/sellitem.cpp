@@ -27,16 +27,23 @@ void SellItem::setNames()
 void SellItem::on_sellbutton_clicked()
 {
 
-        if(ui->numberofsellspinbox->value()>0 && ui->numberofsellspinbox->value() < this->list[this->index]->getQuantity())
-        {
-            this->list[this->index]->setQuantity(this->list[this->index]->getQuantity()-ui->numberofsellspinbox->value());
-            QMessageBox sellDone;
-            sellDone.setText("You Have Successfully Sold " + QString::number(this->list[this->index]->getQuantity())
-                             + " Of " + this->list[this->index]->getName());
-            sellDone.show();
-            sellDone.exec();
-            this->close();
-        }
+    if(ui->numberofsellspinbox->value()>0 && ui->numberofsellspinbox->value() < this->list[this->index]->getQuantity())
+    {
+        this->list[this->index]->setQuantity(this->list[this->index]->getQuantity()-ui->numberofsellspinbox->value());
+        QMessageBox sellDone;
+        sellDone.setText("You Have Successfully Sold " + QString::number(this->list[this->index]->getQuantity())
+                + " Of " + this->list[this->index]->getName());
+        sellDone.show();
+        sellDone.exec();
+        this->close();
+    }
+    else
+    {
+        QMessageBox error;
+        error.setText("Invalid Inputs.");
+        error.show();
+        error.exec();
+    }
 }
 
 void SellItem::on_cancelbutton_clicked()

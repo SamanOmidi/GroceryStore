@@ -162,6 +162,9 @@
      <pointsize>11</pointsize>
     </font>
    </property>
+   <property name="maximum">
+    <number>99999</number>
+   </property>
   </widget>
   <widget class="QPushButton" name="sellbutton">
    <property name="geometry">

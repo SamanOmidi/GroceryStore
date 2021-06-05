@@ -50,15 +50,15 @@ void loginpage::on_registerbutton_clicked()
     {
 
 
-    data.open(QIODevice::WriteOnly | QIODevice::Text);
+        data.open(QIODevice::WriteOnly | QIODevice::Text);
 
-    QTextStream out (&data);
+        QTextStream out (&data);
 
-    out << "username:" << ui->usernameline->text() << '\n';
-    out << "password:" << ui->passwordline->text() << '\n';
+        out << "username:" << ui->usernameline->text() << '\n';
+        out << "password:" << ui->passwordline->text() << '\n';
 
-    data.close();
-    this -> close();
+        data.close();
+        this -> close();
 
     }
 
