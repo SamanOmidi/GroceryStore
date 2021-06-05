@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>550</width>
-    <height>645</height>
+    <width>559</width>
+    <height>612</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -194,18 +194,46 @@
      <string>Search Items</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="musicbutton">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>530</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="storeSources.qrc">
+      <normaloff>:/icons/musicIcon.png</normaloff>:/icons/musicIcon.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>50</width>
+      <height>50</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>550</width>
+     <width>559</width>
      <height>22</height>
     </rect>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="storeSources.qrc"/>
+ </resources>
  <connections/>
 </ui>

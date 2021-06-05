@@ -6,8 +6,22 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //run login page at the start of program
+
     if(StartOfProgram)
         runLoginPage();
+
+    //start music at the start of program
+    if(this->musicPlay)
+    {
+        QMediaPlaylist * playlist = new QMediaPlaylist();
+        playlist->addMedia(QUrl("qrc:/music/Tsuki sayu Yoru – Fu rin Ka zan Original.mp3"));
+        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+        this->music = new QMediaPlayer();
+        music->setPlaylist(playlist);
+        music->play();
+    }
 
 }
 
@@ -94,6 +108,23 @@ void MainWindow::on_searchitemsbutton_clicked()
     searchPage.exec();
 }
 
+// music of program
 
+void MainWindow::playMusic()
+{
+    this->music->play();
+}
 
-
+void MainWindow::on_musicbutton_clicked()
+{
+    if(this->musicPlay)
+    {
+        this->musicPlay = false;
+        this->music->stop();
+    }
+    else
+    {
+        this->musicPlay = true;
+        playMusic();
+    }
+}

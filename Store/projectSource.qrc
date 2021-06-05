@@ -1,0 +1,4 @@
+<RCC>
+    <qresource prefix="/music"/>
+    <qresource prefix="/icons"/>
+</RCC>

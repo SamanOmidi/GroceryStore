@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <item.h>
-#include <additem.h>
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
+#include "item.h"
+#include "additem.h"
 #include "loginpage.h"
 #include "displayitems.h"
 #include "sellitem.h"
@@ -22,10 +24,15 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void playMusic();
+
 private slots:
     void on_addnewitembutton_clicked();
+
     void on_removeitembutton_clicked();
+
     void runLoginPage();
+
     void on_displaybutton_clicked();
 
     void on_sellbutton_clicked();
@@ -34,10 +41,14 @@ private slots:
 
     void on_searchitemsbutton_clicked();
 
+    void on_musicbutton_clicked();
+
 private:
     Ui::MainWindow *ui;
     QVector<Item *> list;
     bool StartOfProgram = true;
     QString user;
+    bool musicPlay = true;
+    QMediaPlayer * music;
 };
 #endif // MAINWINDOW_H
