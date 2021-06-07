@@ -1,2 +1,2 @@
 # GroceryStore
-My university project to make a grocery store app to add , remove .. items .
+Gui store inventory app which you can do -> adding items , removing , editing , ....
