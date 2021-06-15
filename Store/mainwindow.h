@@ -34,6 +34,8 @@ public:
 
     void checkGrouplist();
 
+    void loadItems();
+
 private slots:
     void on_addnewitembutton_clicked();
 

@@ -8,14 +8,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //run login page at the start of program
-
+    
     if(StartOfProgram)
     {
         runLoginPage();
     }
-
+    
     //start music at the start of program
-
+    
     if(this->musicPlay)
     {
         QMediaPlaylist * playlist = new QMediaPlaylist();
@@ -26,6 +26,10 @@ MainWindow::MainWindow(QWidget *parent)
         music->play();
     }
 
+    // load existing items if available
+
+    loadItems();
+    
 }
 
 MainWindow::~MainWindow()
@@ -40,7 +44,8 @@ void MainWindow::on_addnewitembutton_clicked()
     AddItem AddItem(newItem , nullptr);
     AddItem.setModal(true);
     AddItem.exec();
-    if(newItem != nullptr){
+    if(newItem != nullptr)
+    {
         list.push_back(newItem);
         ui->productlist->addItem(newItem->getName());
     }
@@ -75,13 +80,53 @@ void MainWindow::checkGrouplist()
     }
 }
 
+void MainWindow::loadItems()
+{
+    if(this->user == "")
+        return;
+    QFile file (this->user + ".txt");
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    //QTextStream in(&file);
+
+    QString line;
+    QStringList temp;
+
+    bool gp = false;
+    int c = 0;
+
+    while(!file.atEnd())
+    {
+        line = file.readLine();
+        c++;
+        if(line == "G")
+            gp = true;
+
+        if(gp == false && c>2)
+        {
+            temp = line.split(',');
+            Item * newItem = new Item;
+            newItem->setName(temp[0]);
+            newItem->setType(temp[1]);
+            newItem->setProductionCompany(temp[2]);
+            newItem->setPrice(temp[3].toDouble());
+            newItem->setQuantity(temp[4].toInt());
+            this->list.push_back(newItem);
+            ui->productlist->addItem("newItem->getName()");
+        }
+
+    }
+
+    file.close();
+}
+
 
 //removing selected item on the list
 
 void MainWindow::on_removeitembutton_clicked()
 {
     //check if we have any item
-
+    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -90,7 +135,7 @@ void MainWindow::on_removeitembutton_clicked()
         error.exec();
         return;
     }
-
+    
     //check if an item is selected
     if(ui->productlist->selectedItems().count() == 0)
     {
@@ -100,16 +145,16 @@ void MainWindow::on_removeitembutton_clicked()
         error.exec();
         return;
     }
-
+    
     //sell selected item
-
+    
     int index = ui->productlist->currentRow();
     if(index >= 0)
     {
         Item* theItem = list.at(index);
         delete theItem;
         list.removeAt(index);
-
+        
         delete ui->productlist->currentItem();
     }
     checkGrouplist();
@@ -131,7 +176,7 @@ void MainWindow::runLoginPage()
 void MainWindow::on_displaybutton_clicked()
 {
     //check if we have any item
-
+    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -140,7 +185,7 @@ void MainWindow::on_displaybutton_clicked()
         error.exec();
         return;
     }
-
+    
     DisplayItems display;
     display.Display_items(list);
     display.setModal(true);
@@ -152,7 +197,7 @@ void MainWindow::on_displaybutton_clicked()
 void MainWindow::on_sellbutton_clicked()
 {
     //check if we have any item
-
+    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -161,7 +206,7 @@ void MainWindow::on_sellbutton_clicked()
         error.exec();
         return;
     }
-
+    
     //check if an item is selected
     if(ui->productlist->selectedItems().count() == 0)
     {
@@ -171,7 +216,7 @@ void MainWindow::on_sellbutton_clicked()
         error.exec();
         return;
     }
-
+    
     int index = ui->productlist->currentRow();
     SellItem sellpage(list,index);
     sellpage.setModal(true);
@@ -183,7 +228,7 @@ void MainWindow::on_sellbutton_clicked()
 void MainWindow::on_edititembutton_clicked()
 {
     //check if we have any item
-
+    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -192,7 +237,7 @@ void MainWindow::on_edititembutton_clicked()
         error.exec();
         return;
     }
-
+    
     //check if an item is selected
     if(ui->productlist->selectedItems().count() == 0)
     {
@@ -202,7 +247,7 @@ void MainWindow::on_edititembutton_clicked()
         error.exec();
         return;
     }
-
+    
     int index = ui->productlist->currentRow();
     EditItem editPage(list,index);
     editPage.setModal(true);
@@ -219,7 +264,7 @@ void MainWindow::on_edititembutton_clicked()
 void MainWindow::on_searchitemsbutton_clicked()
 {
     //check if we have any item
-
+    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -228,7 +273,7 @@ void MainWindow::on_searchitemsbutton_clicked()
         error.exec();
         return;
     }
-
+    
     SearchItem searchPage(list);
     searchPage.setModal(true);
     searchPage.exec();
@@ -260,7 +305,7 @@ void MainWindow::on_musicbutton_clicked()
 void MainWindow::on_addnewgroupbutton_clicked()
 {
     //check if we have any item
-
+    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -269,7 +314,7 @@ void MainWindow::on_addnewgroupbutton_clicked()
         error.exec();
         return;
     }
-
+    
     AddNewGroup newGroup(list);
     newGroup.setModal(true);
     newGroup.exec();
@@ -288,7 +333,7 @@ void MainWindow::on_addnewgroupbutton_clicked()
 void MainWindow::on_displaygroupitemsbutton_clicked()
 {
     //check if we have any groups
-
+    
     if(ui->grouplist->count() <= 0)
     {
         QMessageBox error;
@@ -297,7 +342,7 @@ void MainWindow::on_displaygroupitemsbutton_clicked()
         error.exec();
         return;
     }
-
+    
     //check if a group is selected
     if(ui->grouplist->selectedItems().count() == 0)
     {
@@ -307,18 +352,18 @@ void MainWindow::on_displaygroupitemsbutton_clicked()
         error.exec();
         return;
     }
-
+    
     QString groupName = ui->grouplist->currentItem()->text();
     DisplayGroupProducts displayPage(this->list,groupName);
     displayPage.setModal(true);
     displayPage.exec();
-
+    
 }
 
 void MainWindow::on_searchgroupsbutton_clicked()
 {
     //check if we have any groups
-
+    
     if(ui->grouplist->count() <= 0)
     {
         QMessageBox error;
@@ -327,13 +372,13 @@ void MainWindow::on_searchgroupsbutton_clicked()
         error.exec();
         return;
     }
-
+    
     QVector<QString> groupsName;
     for(int i=0 ; i<ui->grouplist->count() ; i++)
     {
         groupsName.push_back(ui->grouplist->item(i)->text());
     }
-
+    
     SearchGroups groupsearchPage(groupsName);
     groupsearchPage.setModal(true);
     groupsearchPage.exec();
@@ -342,7 +387,7 @@ void MainWindow::on_searchgroupsbutton_clicked()
 void MainWindow::on_savebutton_clicked()
 {
     //check if user has loged in
-
+    
     if(this->user == "")
     {
         QMessageBox error;
@@ -351,33 +396,82 @@ void MainWindow::on_savebutton_clicked()
         error.exec();
         return;
     }
-
+    
     QFile data (this->user + ".txt");
-
+    
     if(data.exists())
     {
         data.open(QIODevice::ReadOnly | QIODevice::Text);
-
-        QTextStream out(&data);
-
+        
+        QTextStream in(&data);
+        
         QString line;
-
-//            for(int i=0 ; i<this->list.size()+2 ; i++)
-//            {
-//                if(i<2)
-//                {
-//                    out.readLine();
-//                }
-//                else
-//                {
-//                    out << list[i-2]->getName() << ','
-//                        << list[i-2]->getType() << ','
-//                        << list[i-2]->getProductionCompany() << ','
-//                        << list[i-2]->getPrice() << ','
-//                        << list[i-2]->getQuantity();
-//                }
-//            }
-
+        QStringList userName;
+        QStringList passWord;
+        
+        for(int i=0 ; i<2 ; ++i)
+        {
+            if(i==0)
+            {
+                line = in.readLine();
+                userName = line.split(':');
+            }
+            if(i==1)
+            {
+                line = in.readLine();
+                passWord = line.split(':');
+            }
+        }
+        
+        data.close();
+        
+        data.open(QIODevice::WriteOnly | QIODevice::Text);
+        QTextStream out(&data);
+        
+        for(int i=0 ; i<this->list.size() + 2 + ui->grouplist->count() ; i++)
+        {
+            if(i==0)
+            {
+                out << "username:" << userName.at(1) << '\n';
+            }
+            else if(i==1)
+            {
+                out << "password:" << passWord.at(1) << '\n';
+            }
+            
+            else if(i<this->list.size()+2)
+            {
+                if(i == this->list.size() + 1 && ui->grouplist->count() == 0)
+                {
+                    out << this->list[i-2]->getName() << ','
+                                                      << this->list[i-2]->getType() << ','
+                                                      << this->list[i-2]->getProductionCompany() << ','
+                                                      << this->list[i-2]->getPrice() << ','
+                                                      << this->list[i-2]->getPrice();
+                }
+                else
+                {
+                    out << this->list[i-2]->getName() << ','
+                                                      << this->list[i-2]->getType() << ','
+                                                      << this->list[i-2]->getProductionCompany() << ','
+                                                      << this->list[i-2]->getPrice() << ','
+                                                      << this->list[i-2]->getPrice() << '\n';
+                }
+            }
+            else
+            {
+                if(i == this->list.size()+2)
+                    out << 'G' << '\n';
+                if(i == this->list.size() + 1 + ui->grouplist->count())
+                {
+                    out << ui->grouplist->item(i-( this->list.size() + 2))->text();
+                }
+                else
+                {
+                    out << ui->grouplist->item(i-( this->list.size() + 2))->text() << '\n';
+                }
+            }
+        }
+        data.close();
     }
-    data.close();
 }
