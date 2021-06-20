@@ -347,7 +347,7 @@ void MainWindow::on_addnewgroupbutton_clicked()
             break;
         }
     }
-    if(validName == false)
+    if(validName == false && newGroup.newGroupName() != "")
     {
         QMessageBox error;
         error.setText("Name You Have Chosen Do Not Exist.");
