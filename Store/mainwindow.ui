@@ -6,12 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>742</width>
-    <height>698</height>
+    <width>760</width>
+    <height>567</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:rgb(231, 226, 255)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -27,7 +30,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>550</width>
+          <width>600</width>
           <height>20</height>
          </size>
         </property>
@@ -46,8 +49,12 @@
           <pointsize>12</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:13px;
+background:rgb(83, 255, 212)</string>
+        </property>
         <property name="text">
-         <string>Save , Exit</string>
+         <string>Save</string>
         </property>
        </widget>
       </item>
@@ -59,16 +66,20 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="styleSheet">
+         <string notr="true">border-radius:20px;
+background:rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string/>
         </property>
         <property name="icon">
-         <iconset resource="storeSources.qrc">
-          <normaloff>:/icons/musicIcon.png</normaloff>:/icons/musicIcon.png</iconset>
+         <iconset resource="../Sources/projectSources.qrc">
+          <normaloff>:/images/musicIcon4.png</normaloff>:/images/musicIcon4.png</iconset>
         </property>
         <property name="iconSize">
          <size>
-          <width>50</width>
+          <width>40</width>
           <height>50</height>
          </size>
         </property>
@@ -78,6 +89,22 @@
        </widget>
       </item>
      </layout>
+    </item>
+    <item>
+     <spacer name="verticalSpacer_3">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeType">
+       <enum>QSizePolicy::Fixed</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>12</height>
+       </size>
+      </property>
+     </spacer>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -112,12 +139,18 @@
             <pointsize>11</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>18</number>
+        </property>
         <item>
          <widget class="QPushButton" name="addnewitembutton">
           <property name="sizePolicy">
@@ -131,26 +164,12 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background:rgb(255, 251, 135);</string>
+          </property>
           <property name="text">
            <string>Add New Item</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="sellbutton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>12</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sell Selected Item</string>
           </property>
          </widget>
         </item>
@@ -167,8 +186,34 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background:rgb(255, 149, 149);</string>
+          </property>
           <property name="text">
            <string>Display All Items</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="sellbutton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background:rgb(212, 255, 172);</string>
+          </property>
+          <property name="text">
+           <string>Sell Selected Item</string>
           </property>
          </widget>
         </item>
@@ -184,6 +229,10 @@
            <font>
             <pointsize>12</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background:rgb(157, 159, 255);</string>
           </property>
           <property name="text">
            <string>Edit Selected Item</string>
@@ -203,6 +252,10 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background:rgb(223, 196, 255);</string>
+          </property>
           <property name="text">
            <string>Remove Selected Item</string>
           </property>
@@ -220,6 +273,10 @@
            <font>
             <pointsize>12</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-radius: 10px;
+background:rgb(255, 90, 90);</string>
           </property>
           <property name="text">
            <string>Search Items</string>
@@ -257,7 +314,7 @@
       <property name="sizeHint" stdset="0">
        <size>
         <width>20</width>
-        <height>50</height>
+        <height>20</height>
        </size>
       </property>
      </spacer>
@@ -289,6 +346,12 @@
             <pointsize>11</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(255, 255, 255);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::StyledPanel</enum>
+          </property>
          </widget>
         </item>
        </layout>
@@ -296,7 +359,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <property name="spacing">
-         <number>0</number>
+         <number>18</number>
         </property>
         <item>
          <widget class="QPushButton" name="addnewgroupbutton">
@@ -372,21 +435,24 @@
       </item>
      </layout>
     </item>
+    <item>
+     <spacer name="verticalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>742</width>
-     <height>22</height>
-    </rect>
-   </property>
   </widget>
  </widget>
  <resources>
-  <include location="storeSources.qrc"/>
+  <include location="../Sources/projectSources.qrc"/>
  </resources>
  <connections/>
 </ui>

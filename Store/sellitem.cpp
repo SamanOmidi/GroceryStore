@@ -27,7 +27,7 @@ void SellItem::setNames()
 void SellItem::on_sellbutton_clicked()
 {
 
-    if(ui->numberofsellspinbox->value()>0 && ui->numberofsellspinbox->value() < this->list[this->index]->getQuantity())
+    if(ui->numberofsellspinbox->value()>0 && ui->numberofsellspinbox->value() <= this->list[this->index]->getQuantity())
     {
         this->list[this->index]->setQuantity(this->list[this->index]->getQuantity()-ui->numberofsellspinbox->value());
         QMessageBox sellDone;
@@ -43,6 +43,7 @@ void SellItem::on_sellbutton_clicked()
         error.setText("Invalid Inputs.");
         error.show();
         error.exec();
+        return;
     }
 }
 

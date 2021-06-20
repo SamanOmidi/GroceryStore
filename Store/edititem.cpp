@@ -27,54 +27,36 @@ void EditItem::setItemInfo()
 
 void EditItem::on_confirmbutton_clicked()
 {
-    QRegExp re("\\d*"); // // a digit (\d), zero or more times (*)
-    if(ui->nameline->text()==""
-            && ui->typeline->text()==""
-            && ui->companyline->text()==""
-            && ui->priceline->text()==""
-            && ui->quantityline->text()=="")
-    {
-        QMessageBox error ;
-        error.setText("Invalid Inputs!");
-        error.exec();
-        return;
-    }
-    else if(!(re.exactMatch(ui->priceline->text()) && re.exactMatch(ui->quantityline->text())))
-    {
-        QMessageBox error ;
-        error.setText("Invalid Inputs!");
+    if(ui->priceline->text().toDouble() < 0 || ui->quantityline->text().toInt() <= 0){
+        QMessageBox error;
+        error.setText("Invalid Inputs.");
+        error.show();
         error.exec();
         return;
     }
 
-    else
+    if(ui->nameline->text() == "" ||
+       ui->typeline->text() == "" ||
+       ui->companyline->text() == "" ||
+       ui->priceline->text() == "" ||
+       ui->quantityline->text() == "")
     {
-
-        if(!(ui->nameline->text()==""))
-        {
-            this->list[this->index]->setName(ui->nameline->text());
-        }
-        if(!(ui->typeline->text()==""))
-        {
-            this->list[this->index]->setType(ui->typeline->text());
-        }
-        if(!(ui->companyline->text()==""))
-        {
-            this->list[this->index]->setProductionCompany(ui->companyline->text());
-        }
-        if(!(ui->priceline->text()==""))
-        {
-            this->list[this->index]->setPrice(ui->priceline->text().toDouble());
-        }
-        if(!(ui->quantityline->text()==""))
-        {
-            this->list[this->index]->setQuantity(ui->quantityline->text().toInt());
-        }
-        QMessageBox editDone;
-        editDone.setText("Your Changes Have Been Successfully Applied.");
-        editDone.show();
-        editDone.exec();
-        this->close();
+        QMessageBox error;
+        error.setText("You Can't Leave Empty Lines!!!");
+        error.show();
+        error.exec();
+        return;
     }
+
+    list[index]->setName(ui->nameline->text());
+    list[index]->setType(ui->typeline->text());
+    list[index]->setProductionCompany(ui->companyline->text());
+    list[index]->setPrice(ui->priceline->text().toDouble());
+    list[index]->setQuantity(ui->quantityline->text().toInt());
+    QMessageBox error;
+    error.setText("Changes Have Applied Successfully.");
+    error.show();
+    error.exec();
+    this->close();
 
 }

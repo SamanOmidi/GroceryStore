@@ -40,7 +40,7 @@ void loginpage::on_registerbutton_clicked()
     if(data.exists(ui->usernameline->text()+".txt"))
     {
         QMessageBox errorDuplicateAccount;
-        errorDuplicateAccount.setText("This User Name Already Exists.");
+        errorDuplicateAccount.setText("This Username Already Exists.");
         errorDuplicateAccount.exec();
         return;
     }
@@ -105,8 +105,9 @@ void loginpage::on_loginbutton_clicked()
         else
         {
             QMessageBox InvalidInputs;
-            InvalidInputs.setText("Incorrect User Or Password...");
+            InvalidInputs.setText("Incorrect Username Or Password...");
             InvalidInputs.exec();
+            data.close();
             return;
         }
     }

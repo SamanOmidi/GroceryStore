@@ -2,9 +2,8 @@
 #define ADDITEM_H
 
 #include <QDialog>
-#include <item.h>
+#include "item.h"
 #include <QMessageBox>
-#include <QRegExp>
 
 namespace Ui {
 class AddItem;

@@ -68,11 +68,5 @@ void AddNewGroup::on_confirmbutton_clicked()
         return;
     }
     else
-    {
-        QMessageBox confirmedSuccesfully;
-        confirmedSuccesfully.setText("New Group Added To The List.");
-        confirmedSuccesfully.show();
-        confirmedSuccesfully.exec();
         this->close();
-    }
 }

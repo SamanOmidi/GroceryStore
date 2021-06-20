@@ -16,19 +16,19 @@ MainWindow::MainWindow(QWidget *parent)
     
     //start music at the start of program
     
-    if(this->musicPlay)
-    {
-        QMediaPlaylist * playlist = new QMediaPlaylist();
-        playlist->addMedia(QUrl("qrc:/music/Tsuki sayu Yoru – Fu rin Ka zan Original.mp3"));
-        playlist->setPlaybackMode(QMediaPlaylist::Loop);
-        this->music = new QMediaPlayer();
-        music->setPlaylist(playlist);
-        music->play();
-    }
+    //    if(this->musicPlay)
+    //    {
+    //        QMediaPlaylist * playlist = new QMediaPlaylist();
+    //        playlist->addMedia(QUrl("qrc:/music/MJ AIR TIME - Andy Quin   Up Market (Music From NBA Films).mp3"));
+    //        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    //        music.setPlaylist(playlist);
+    //        music.play();
+    //    }
 
     // load existing items if available
 
     loadItems();
+
     
 }
 
@@ -75,7 +75,7 @@ void MainWindow::checkGrouplist()
         }
         else
         {
-            delete ui->grouplist->itemAt(i,0);
+            delete ui->grouplist->item(i);
         }
     }
 }
@@ -99,7 +99,16 @@ void MainWindow::loadItems()
     {
         line = file.readLine();
         c++;
-        if(line == "G")
+        if(gp == true)
+        {
+            temp = line.split(',');
+            for(int i=0 ; i<temp.size() ; i++)
+            {
+                ui->grouplist->addItem(temp[i]);
+            }
+        }
+
+        if(line == "G:\n")
             gp = true;
 
         if(gp == false && c>2)
@@ -112,7 +121,7 @@ void MainWindow::loadItems()
             newItem->setPrice(temp[3].toDouble());
             newItem->setQuantity(temp[4].toInt());
             this->list.push_back(newItem);
-            ui->productlist->addItem("newItem->getName()");
+            ui->productlist->addItem(temp[0]);
         }
 
     }
@@ -146,7 +155,7 @@ void MainWindow::on_removeitembutton_clicked()
         return;
     }
     
-    //sell selected item
+    //remove selected item
     
     int index = ui->productlist->currentRow();
     if(index >= 0)
@@ -221,6 +230,16 @@ void MainWindow::on_sellbutton_clicked()
     SellItem sellpage(list,index);
     sellpage.setModal(true);
     sellpage.exec();
+
+    if(list[index]->getQuantity() <= 0)
+    {
+        Item* theItem = list.at(index);
+        delete theItem;
+        list.removeAt(index);
+
+        delete ui->productlist->currentItem();
+    }
+    checkGrouplist();
 }
 
 //edit an item
@@ -281,24 +300,24 @@ void MainWindow::on_searchitemsbutton_clicked()
 
 // music of program
 
-void MainWindow::playMusic()
-{
-    this->music->play();
-}
+//void MainWindow::playMusic()
+//{
+//    music.play();
+//}
 
-void MainWindow::on_musicbutton_clicked()
-{
-    if(this->musicPlay)
-    {
-        this->musicPlay = false;
-        this->music->stop();
-    }
-    else
-    {
-        this->musicPlay = true;
-        playMusic();
-    }
-}
+//void MainWindow::on_musicbutton_clicked()
+//{
+//    if(this->musicPlay)
+//    {
+//        this->musicPlay = false;
+//        music.pause();
+//    }
+//    else
+//    {
+//        this->musicPlay = true;
+//        playMusic();
+//    }
+//}
 
 //add the name of the group to the list in the main program.
 
@@ -318,13 +337,23 @@ void MainWindow::on_addnewgroupbutton_clicked()
     AddNewGroup newGroup(list);
     newGroup.setModal(true);
     newGroup.exec();
+    bool validName = false;
     for(int i=0 ; i<this->list.size() ; i++)
     {
         if(newGroup.newGroupName() == this->list[i]->getType())
         {
             ui->grouplist->addItem(newGroup.newGroupName());
+            validName = true;
             break;
         }
+    }
+    if(validName == false)
+    {
+        QMessageBox error;
+        error.setText("Name You Have Chosen Do Not Exist.");
+        error.show();
+        error.exec();
+        return;
     }
 }
 
@@ -461,17 +490,19 @@ void MainWindow::on_savebutton_clicked()
             else
             {
                 if(i == this->list.size()+2)
-                    out << 'G' << '\n';
-                if(i == this->list.size() + 1 + ui->grouplist->count())
-                {
+                    out << "G:" << '\n';
+                if(i == this->list.size()+1+ui->grouplist->count())
                     out << ui->grouplist->item(i-( this->list.size() + 2))->text();
-                }
                 else
-                {
-                    out << ui->grouplist->item(i-( this->list.size() + 2))->text() << '\n';
-                }
+                    out << ui->grouplist->item(i-( this->list.size() + 2))->text() << ',';
             }
         }
+
+        QMessageBox saveDone;
+        saveDone.setText("Saved!!");
+        saveDone.show();
+        saveDone.exec();
+
         data.close();
     }
 }

@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMediaPlaylist>
-#include <QMediaPlayer>
+//#include <QMediaPlaylist>
+//#include <QMediaPlayer>
 #include "item.h"
 #include "additem.h"
 #include "loginpage.h"
@@ -49,7 +49,6 @@ private slots:
 
     void on_searchitemsbutton_clicked();
 
-    void on_musicbutton_clicked();
 
     void on_addnewgroupbutton_clicked();
 
@@ -73,7 +72,7 @@ private:
 
     //checking and playing the music of program
     bool musicPlay = true;
-    QMediaPlayer * music;
+    //QMediaPlayer music;
 
 };
 #endif // MAINWINDOW_H
