@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>306</width>
-    <height>217</height>
+    <height>171</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -66,7 +66,11 @@
         <widget class="QLineEdit" name="usernameline"/>
        </item>
        <item>
-        <widget class="QLineEdit" name="passwordline"/>
+        <widget class="QLineEdit" name="passwordline">
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

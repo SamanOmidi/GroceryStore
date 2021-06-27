@@ -2,6 +2,9 @@
 #define CUSTOMERLOGIN_H
 
 #include <QDialog>
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
 
 namespace Ui {
 class CustomerLogin;
