@@ -16,14 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     
     //start music at the start of program
     
-    //    if(this->musicPlay)
-    //    {
-    //        QMediaPlaylist * playlist = new QMediaPlaylist();
-    //        playlist->addMedia(QUrl("qrc:/music/MJ AIR TIME - Andy Quin   Up Market (Music From NBA Films).mp3"));
-    //        playlist->setPlaybackMode(QMediaPlaylist::Loop);
-    //        music.setPlaylist(playlist);
-    //        music.play();
-    //    }
+    if(this->musicPlay)
+    {
+        QMediaPlaylist * playlist = new QMediaPlaylist();
+        playlist->addMedia(QUrl("qrc:/music/MJ AIR TIME - Andy Quin   Up Market (Music From NBA Films).mp3"));
+        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+        music.setPlaylist(playlist);
+        music.play();
+    }
 
     // load existing items if available
 
@@ -84,7 +84,7 @@ void MainWindow::loadItems()
 {
     if(this->user == "")
         return;
-    QFile file (this->user + ".txt");
+    QFile file ("data.txt");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
 
     //QTextStream in(&file);
@@ -93,12 +93,10 @@ void MainWindow::loadItems()
     QStringList temp;
 
     bool gp = false;
-    int c = 0;
 
     while(!file.atEnd())
     {
         line = file.readLine();
-        c++;
         if(gp == true)
         {
             temp = line.split(',');
@@ -111,7 +109,7 @@ void MainWindow::loadItems()
         if(line == "G:\n")
             gp = true;
 
-        if(gp == false && c>2)
+        if(gp == false)
         {
             temp = line.split(',');
             Item * newItem = new Item;
@@ -300,24 +298,24 @@ void MainWindow::on_searchitemsbutton_clicked()
 
 // music of program
 
-//void MainWindow::playMusic()
-//{
-//    music.play();
-//}
+void MainWindow::playMusic()
+{
+    music.play();
+}
 
-//void MainWindow::on_musicbutton_clicked()
-//{
-//    if(this->musicPlay)
-//    {
-//        this->musicPlay = false;
-//        music.pause();
-//    }
-//    else
-//    {
-//        this->musicPlay = true;
-//        playMusic();
-//    }
-//}
+void MainWindow::on_musicbutton_clicked()
+{
+    if(this->musicPlay)
+    {
+        this->musicPlay = false;
+        music.pause();
+    }
+    else
+    {
+        this->musicPlay = true;
+        playMusic();
+    }
+}
 
 //add the name of the group to the list in the main program.
 
@@ -426,83 +424,76 @@ void MainWindow::on_savebutton_clicked()
         return;
     }
     
-    QFile data (this->user + ".txt");
+    QFile data ("data.txt");
     
-    if(data.exists())
+//    data.open(QIODevice::ReadOnly | QIODevice::Text);
+
+//    QTextStream in(&data);
+
+//    QString line;
+//    QStringList userName;
+//    QStringList passWord;
+
+//    for(int i=0 ; i<2 ; ++i)
+//    {
+//        if(i==0)
+//        {
+//            line = in.readLine();
+//            userName = line.split(':');
+//        }
+//        if(i==1)
+//        {
+//            line = in.readLine();
+//            passWord = line.split(':');
+//        }
+//    }
+
+//    data.close();
+
+    data.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&data);
+
+    for(int i=0 ; i<this->list.size()+ ui->grouplist->count() + 1 ; i++)
     {
-        data.open(QIODevice::ReadOnly | QIODevice::Text);
-        
-        QTextStream in(&data);
-        
-        QString line;
-        QStringList userName;
-        QStringList passWord;
-        
-        for(int i=0 ; i<2 ; ++i)
+
+        if(i<this->list.size())
         {
-            if(i==0)
+            if(i == this->list.size() - 1 && ui->grouplist->count() == 0)
             {
-                line = in.readLine();
-                userName = line.split(':');
-            }
-            if(i==1)
-            {
-                line = in.readLine();
-                passWord = line.split(':');
-            }
-        }
-        
-        data.close();
-        
-        data.open(QIODevice::WriteOnly | QIODevice::Text);
-        QTextStream out(&data);
-        
-        for(int i=0 ; i<this->list.size() + 2 + ui->grouplist->count() ; i++)
-        {
-            if(i==0)
-            {
-                out << "username:" << userName.at(1) << '\n';
-            }
-            else if(i==1)
-            {
-                out << "password:" << passWord.at(1) << '\n';
-            }
-            
-            else if(i<this->list.size()+2)
-            {
-                if(i == this->list.size() + 1 && ui->grouplist->count() == 0)
-                {
-                    out << this->list[i-2]->getName() << ','
-                                                      << this->list[i-2]->getType() << ','
-                                                      << this->list[i-2]->getProductionCompany() << ','
-                                                      << this->list[i-2]->getPrice() << ','
-                                                      << this->list[i-2]->getPrice();
-                }
-                else
-                {
-                    out << this->list[i-2]->getName() << ','
-                                                      << this->list[i-2]->getType() << ','
-                                                      << this->list[i-2]->getProductionCompany() << ','
-                                                      << this->list[i-2]->getPrice() << ','
-                                                      << this->list[i-2]->getPrice() << '\n';
-                }
+                out << this->list[i]->getName() << ','
+                                                  << this->list[i]->getType() << ','
+                                                  << this->list[i]->getProductionCompany() << ','
+                                                  << this->list[i]->getPrice() << ','
+                                                  << this->list[i]->getPrice();
             }
             else
             {
-                if(i == this->list.size()+2)
-                    out << "G:" << '\n';
-                if(i == this->list.size()+1+ui->grouplist->count())
-                    out << ui->grouplist->item(i-( this->list.size() + 2))->text();
-                else
-                    out << ui->grouplist->item(i-( this->list.size() + 2))->text() << ',';
+                out << this->list[i]->getName() << ','
+                                                  << this->list[i]->getType() << ','
+                                                  << this->list[i]->getProductionCompany() << ','
+                                                  << this->list[i]->getPrice() << ','
+                                                  << this->list[i]->getPrice() << '\n';
             }
         }
-
-        QMessageBox saveDone;
-        saveDone.setText("Saved!!");
-        saveDone.show();
-        saveDone.exec();
-
-        data.close();
+        else
+        {
+            if(i == this->list.size()){
+                out << "G:" << '\n';
+                continue;
+            }
+            if(i == this->list.size()+ui->grouplist->count())
+                out << ui->grouplist->item(i-( this->list.size()) - 1)->text();
+            else
+                out << ui->grouplist->item(i-( this->list.size()) - 1)->text() << ',';
+        }
     }
+
+    QMessageBox saveDone;
+    saveDone.setText("Saved!!");
+    saveDone.show();
+    saveDone.exec();
+
+    data.close();
+
 }
+

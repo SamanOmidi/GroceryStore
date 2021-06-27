@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-//#include <QMediaPlaylist>
-//#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
+#include <windows.h>
 #include "item.h"
 #include "additem.h"
 #include "loginpage.h"
@@ -14,6 +15,7 @@
 #include "addnewgroup.h"
 #include "displaygroupproducts.h"
 #include "searchgroups.h"
+
 
 
 QT_BEGIN_NAMESPACE
@@ -58,6 +60,8 @@ private slots:
 
     void on_savebutton_clicked();
 
+    void on_musicbutton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -72,7 +76,7 @@ private:
 
     //checking and playing the music of program
     bool musicPlay = true;
-    //QMediaPlayer music;
+    QMediaPlayer music;
 
 };
 #endif // MAINWINDOW_H

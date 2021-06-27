@@ -1,5 +1,5 @@
 QT       += core gui
-#QT       += multimedia
+QT       += multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -10,6 +10,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     additem.cpp \
     addnewgroup.cpp \
+    customer.cpp \
+    customerlogin.cpp \
     displaygroupproducts.cpp \
     displayitems.cpp \
     edititem.cpp \
@@ -19,11 +21,14 @@ SOURCES += \
     mainwindow.cpp \
     searchgroups.cpp \
     searchitem.cpp \
-    sellitem.cpp
+    sellitem.cpp \
+    start.cpp
 
 HEADERS += \
     additem.h \
     addnewgroup.h \
+    customer.h \
+    customerlogin.h \
     displaygroupproducts.h \
     displayitems.h \
     edititem.h \
@@ -32,11 +37,14 @@ HEADERS += \
     mainwindow.h \
     searchgroups.h \
     searchitem.h \
-    sellitem.h
+    sellitem.h \
+    start.h
 
 FORMS += \
     additem.ui \
     addnewgroup.ui \
+    customer.ui \
+    customerlogin.ui \
     displaygroupproducts.ui \
     displayitems.ui \
     edititem.ui \
@@ -44,7 +52,8 @@ FORMS += \
     mainwindow.ui \
     searchgroups.ui \
     searchitem.ui \
-    sellitem.ui
+    sellitem.ui \
+    start.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
