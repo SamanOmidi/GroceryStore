@@ -1,5 +1,0 @@
-Guitar,Instrument,Omaha,2000,2000
-Piano,Instrument,Omaha,120,120
-Bread,Eat,SmN,120,120
-G:
-Instrument,Eat
