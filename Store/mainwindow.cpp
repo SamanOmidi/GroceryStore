@@ -423,33 +423,8 @@ void MainWindow::on_savebutton_clicked()
         error.exec();
         return;
     }
-    
     QFile data ("data.txt");
     
-//    data.open(QIODevice::ReadOnly | QIODevice::Text);
-
-//    QTextStream in(&data);
-
-//    QString line;
-//    QStringList userName;
-//    QStringList passWord;
-
-//    for(int i=0 ; i<2 ; ++i)
-//    {
-//        if(i==0)
-//        {
-//            line = in.readLine();
-//            userName = line.split(':');
-//        }
-//        if(i==1)
-//        {
-//            line = in.readLine();
-//            passWord = line.split(':');
-//        }
-//    }
-
-//    data.close();
-
     data.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&data);
 

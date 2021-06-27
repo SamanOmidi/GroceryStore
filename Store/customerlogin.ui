@@ -63,10 +63,21 @@
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLineEdit" name="usernameline"/>
+        <widget class="QLineEdit" name="usernameline">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+        </widget>
        </item>
        <item>
         <widget class="QLineEdit" name="passwordline">
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
          <property name="echoMode">
           <enum>QLineEdit::Password</enum>
          </property>

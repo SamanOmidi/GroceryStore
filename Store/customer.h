@@ -1,8 +1,12 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
 
+#include <QListWidget>
 #include <QMainWindow>
+#include <QVector>
 #include "customerlogin.h"
+#include "item.h"
+#include "addtocart.h"
 
 
 namespace Ui {
@@ -19,8 +23,22 @@ public:
 
     void runLoginPage();
 
+    void loaditems();
+
+    void checkgrouplist();
+
+    void handleItemClicked(QListWidgetItem * productlist);
+
+    void SaveItems();
+
+private slots:
+    void on_buybutton_clicked();
+
 private:
     Ui::Customer *ui;
+
+    //vector of items
+    QVector<Item *> list;
 
     //checking start of program to run login page
     bool StartOfProgram = true;

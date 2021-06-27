@@ -10,6 +10,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     additem.cpp \
     addnewgroup.cpp \
+    addtocart.cpp \
     customer.cpp \
     customerlogin.cpp \
     displaygroupproducts.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
 HEADERS += \
     additem.h \
     addnewgroup.h \
+    addtocart.h \
     customer.h \
     customerlogin.h \
     displaygroupproducts.h \
@@ -43,6 +45,7 @@ HEADERS += \
 FORMS += \
     additem.ui \
     addnewgroup.ui \
+    addtocart.ui \
     customer.ui \
     customerlogin.ui \
     displaygroupproducts.ui \
