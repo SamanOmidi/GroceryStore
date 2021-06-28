@@ -13,16 +13,19 @@ loginpage::~loginpage()
     delete ui;
 }
 
+
+//return the username to the mainwindow
 QString loginpage::username()
 {
     return ui->usernameline->text();
 }
 
+
+//if user clicked on register button
 void loginpage::on_registerbutton_clicked()
 {
+
     //error box if username or password was empty
-
-
     if(ui->usernameline->text() == "" || ui->passwordline->text() == "" )
     {
         QMessageBox error;
@@ -32,11 +35,14 @@ void loginpage::on_registerbutton_clicked()
         return ;
     }
 
-    //creating data.txt as file to save data on it
-
+    //creating data.txt as file to save info of the admin/staff user on it
+    //it saves on different files based on their name
+    //ex. admin.txt is for admin
+    //ex. saman.txt is for staff with the username of saman
 
     QFile data(ui->usernameline->text()+".txt");
 
+    //checking if this username already exists, then warn the user
     if(data.exists(ui->usernameline->text()+".txt"))
     {
         QMessageBox errorDuplicateAccount;
@@ -45,13 +51,15 @@ void loginpage::on_registerbutton_clicked()
         return;
     }
 
+    //making the account for the user
     else
     {
-
-
         data.open(QIODevice::WriteOnly | QIODevice::Text);
 
         QTextStream out (&data);
+
+        //to save persian usernames and passwords
+        out.setCodec("UTF-8");
 
         out << "username:" << ui->usernameline->text() << '\n';
         out << "password:" << ui->passwordline->text() << '\n';
@@ -64,11 +72,14 @@ void loginpage::on_registerbutton_clicked()
 }
 
 
+//if user clicked on the login button
 void loginpage::on_loginbutton_clicked()
 {
 
     //loading data.txt to read data
 
+
+    //checking if a person with that username exists
     QFile data(ui->usernameline->text()+".txt");
 
     if(data.exists(ui->usernameline->text()+".txt")){
@@ -79,6 +90,7 @@ void loginpage::on_loginbutton_clicked()
         QString line;
         QStringList username;
         QStringList password;
+        //getting the user file -> username and password
         for(int i=0 ; i<2 ; ++i)
         {
             if(i==0)
@@ -93,6 +105,7 @@ void loginpage::on_loginbutton_clicked()
             }
         }
 
+        //matching the gotten username and password to the user input
         if(username.at(1) == ui->usernameline->text() && password.at(1) == ui->passwordline->text())
         {
             QMessageBox welcome;
@@ -102,6 +115,8 @@ void loginpage::on_loginbutton_clicked()
             data.close();
             this->close();
         }
+
+        //warn the user that has entered wrong username or password
         else
         {
             QMessageBox InvalidInputs;
@@ -110,7 +125,10 @@ void loginpage::on_loginbutton_clicked()
             data.close();
             return;
         }
+
     }
+
+    //the user had no account
     else
     {
         QMessageBox noFile;
@@ -118,6 +136,4 @@ void loginpage::on_loginbutton_clicked()
         noFile.exec();
         return;
     }
-
-    data.close();
 }

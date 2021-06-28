@@ -14,13 +14,17 @@ AddToCart::~AddToCart()
 }
 
 
+//return the quantity of the bought product
 int AddToCart::getQuantity()
 {
     return quantity;
 }
 
+
+//if user clicked on confirm button
 void AddToCart::on_confrimbutton_clicked()
 {
+    //checking for invalid inputs
     if(ui->quantityspinbox->value() <= 0){
         QMessageBox error;
         error.setText("Invalid Value");
@@ -28,6 +32,8 @@ void AddToCart::on_confrimbutton_clicked()
         error.exec();
         return;
     }
+
+    //buying done
     quantity = ui->quantityspinbox->value();
     this->close();
 }

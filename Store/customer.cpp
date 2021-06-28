@@ -8,14 +8,15 @@ Customer::Customer(QWidget *parent) :
     ui->setupUi(this);
 
     //run login page at the start of program
-
     if(StartOfProgram)
     {
         runLoginPage();
     }
 
+
     //load items at start of program
     loaditems();
+
 
     //make group list non selectable
     for(int i=0 ; i<ui->grouplist->count() ; ++i)
@@ -34,7 +35,6 @@ Customer::~Customer()
 }
 
 
-
 //filling quantity and price label
 void Customer::handleItemClicked(QListWidgetItem *productlist)
 {
@@ -47,6 +47,7 @@ void Customer::handleItemClicked(QListWidgetItem *productlist)
     }
 }
 
+
 //saving items after each buy
 void Customer::SaveItems()
 {
@@ -54,6 +55,9 @@ void Customer::SaveItems()
 
     data.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&data);
+
+    //for saving persian names
+    out.setCodec("UTF-8");
 
     for(int i=0 ; i<this->list.size()+ ui->grouplist->count() + 1 ; i++)
     {
@@ -63,18 +67,18 @@ void Customer::SaveItems()
             if(i == this->list.size() - 1 && ui->grouplist->count() == 0)
             {
                 out << this->list[i]->getName() << ','
-                                                  << this->list[i]->getType() << ','
-                                                  << this->list[i]->getProductionCompany() << ','
-                                                  << this->list[i]->getPrice() << ','
-                                                  << this->list[i]->getPrice();
+                    << this->list[i]->getType() << ','
+                    << this->list[i]->getProductionCompany() << ','
+                    << this->list[i]->getPrice() << ','
+                    << this->list[i]->getQuantity() << '\n';
             }
             else
             {
                 out << this->list[i]->getName() << ','
-                                                  << this->list[i]->getType() << ','
-                                                  << this->list[i]->getProductionCompany() << ','
-                                                  << this->list[i]->getPrice() << ','
-                                                  << this->list[i]->getPrice() << '\n';
+                    << this->list[i]->getType() << ','
+                    << this->list[i]->getProductionCompany() << ','
+                    << this->list[i]->getPrice() << ','
+                    << this->list[i]->getQuantity() << '\n';
             }
         }
         else
@@ -97,6 +101,7 @@ void Customer::SaveItems()
 //load the items to the list
 void Customer::loaditems()
 {
+    //if user has not loged in and closed the login page
     if(user == "")
     {
         QMessageBox error;
@@ -105,6 +110,8 @@ void Customer::loaditems()
         error.exec();
         return;
     }
+
+    //warn the user that store has no products
     QFile file ("data.txt");
     if(file.exists() == false)
     {
@@ -114,6 +121,8 @@ void Customer::loaditems()
         error.exec();
         return;
     }
+
+    //loading items
     else
     {
         QFile data ("data.txt");
@@ -150,15 +159,14 @@ void Customer::loaditems()
                 this->list.push_back(newItem);
                 ui->productlist->addItem(temp[0]);
             }
-
         }
-
         data.close();
     }
 }
 
 
 //checking the group list by buying an item
+//if there is no item with that category/type delete the group
 void Customer::checkgrouplist()
 {
     bool exist = false;
@@ -187,16 +195,15 @@ void Customer::checkgrouplist()
 }
 
 
-
-
 //running login page at the start of program
-
 void Customer::runLoginPage()
 {
     StartOfProgram = false;
     CustomerLogin loginPage;
     loginPage.setModal(true);
     loginPage.exec();
+
+    //saving the username of the user
     user = loginPage.username();
 }
 
@@ -205,7 +212,6 @@ void Customer::runLoginPage()
 void Customer::on_buybutton_clicked()
 {
     //check if we have any item
-
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -225,20 +231,36 @@ void Customer::on_buybutton_clicked()
         return;
     }
 
+    //saving item index of the selected item
     int index = ui->productlist->currentRow();
 
+    //running buying dialog
     AddToCart buyPage;
     buyPage.setModal(true);
     buyPage.exec();
 
+    //saving bought quantity of the user for checking if its valid
+    //and setting the new quantity of the selected item
     int boughtQuantity = buyPage.getQuantity();
 
+    if(boughtQuantity > list[index]->getQuantity())
+    {
+        QMessageBox error;
+        error.setText("Invalid Inputs!!!");
+        error.show();
+        error.exec();
+        return;
+    }
+
+    //warn the user buying process has beed done successfully
     QMessageBox BoughtSuccess;
     BoughtSuccess.setText("You Have Successfully Bought " + QString::number(boughtQuantity) + " of " + list[index]->getName() + " with\n total price of "
                           + QString::number(boughtQuantity*ui->price->text().toInt())+'.');
     BoughtSuccess.show();
     BoughtSuccess.exec();
 
+    //setting the new quantity
+    //if the new quantity is < 0 we should remove it from vector and product list and also need to check group list
     list[index]->setQuantity(list[index]->getQuantity()-boughtQuantity);
     if(list[index]->getQuantity() <= 0 ){
         //removing from vector
@@ -248,6 +270,8 @@ void Customer::on_buybutton_clicked()
         //removing from list
         delete ui->productlist->currentItem();
     }
+    //checking the group list
     checkgrouplist();
+    //saving new changes
     SaveItems();
 }

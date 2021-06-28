@@ -13,55 +13,56 @@ CustomerLogin::~CustomerLogin()
     delete ui;
 }
 
+//return the username of the user
 QString CustomerLogin::username()
 {
     return ui->usernameline->text();
 }
 
-
-
+//if user clicked on registor button
 void CustomerLogin::on_registerbutton_clicked()
 {
+
     //error box if username or password was empty
+    if(ui->usernameline->text() == "" || ui->passwordline->text() == "" )
+    {
+        QMessageBox error;
+        error.setText("Invalid Inputs!");
+        error.show();
+        error.exec();
+        return ;
+    }
 
+    //creating data.txt as file to save data on it
+    QFile data(ui->usernameline->text()+"-customer.txt");
 
-        if(ui->usernameline->text() == "" || ui->passwordline->text() == "" )
-        {
-            QMessageBox error;
-            error.setText("Invalid Inputs!");
-            error.show();
-            error.exec();
-            return ;
-        }
+    //check if there is a user with that username in system
+    if(data.exists(ui->usernameline->text()+"-customer.txt"))
+    {
+        QMessageBox errorDuplicateAccount;
+        errorDuplicateAccount.setText("This Username Already Exists.");
+        errorDuplicateAccount.exec();
+        return;
+    }
 
-        //creating data.txt as file to save data on it
+    //making the new account for the user
+    else
+    {
 
+        data.open(QIODevice::WriteOnly | QIODevice::Text);
 
-        QFile data(ui->usernameline->text()+"-customer.txt");
+        QTextStream out (&data);
 
-        if(data.exists(ui->usernameline->text()+"-customer.txt"))
-        {
-            QMessageBox errorDuplicateAccount;
-            errorDuplicateAccount.setText("This Username Already Exists.");
-            errorDuplicateAccount.exec();
-            return;
-        }
+        //for saving persian names
+        out.setCodec("UTF-8");
 
-        else
-        {
+        out << "username:" << ui->usernameline->text() << '\n';
+        out << "password:" << ui->passwordline->text() << '\n';
 
+        data.close();
+        this -> close();
 
-            data.open(QIODevice::WriteOnly | QIODevice::Text);
-
-            QTextStream out (&data);
-
-            out << "username:" << ui->usernameline->text() << '\n';
-            out << "password:" << ui->passwordline->text() << '\n';
-
-            data.close();
-            this -> close();
-
-        }
+    }
 
 }
 
@@ -77,6 +78,7 @@ void CustomerLogin::on_loginbutton_clicked()
         data.open(QIODevice::ReadOnly | QIODevice::Text);
         QTextStream in(&data);
 
+        //matchin the user inputs and saved files in system
         QString line;
         QStringList username;
         QStringList password;
@@ -94,6 +96,7 @@ void CustomerLogin::on_loginbutton_clicked()
             }
         }
 
+        //user inputs matches
         if(username.at(1) == ui->usernameline->text() && password.at(1) == ui->passwordline->text())
         {
             QMessageBox welcome;
@@ -103,6 +106,8 @@ void CustomerLogin::on_loginbutton_clicked()
             data.close();
             this->close();
         }
+
+        //user inputs do not matches
         else
         {
             QMessageBox InvalidInputs;
@@ -112,6 +117,8 @@ void CustomerLogin::on_loginbutton_clicked()
             return;
         }
     }
+
+    //warn the user that has not account saved in the system
     else
     {
         QMessageBox noFile;
@@ -119,6 +126,4 @@ void CustomerLogin::on_loginbutton_clicked()
         noFile.exec();
         return;
     }
-
-    data.close();
 }

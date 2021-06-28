@@ -336,6 +336,20 @@ void MainWindow::on_addnewgroupbutton_clicked()
     newGroup.setModal(true);
     newGroup.exec();
     bool validName = false;
+    //saving group names to a vector of strings
+    QVector<QString> groupnames;
+    for(int i=0 ; i<ui->grouplist->count() ; ++i)
+    {
+        groupnames.push_back(ui->grouplist->item(i)->text());
+    }
+    //checking the grouplist for not similar group names
+    for(int i=0 ; i<ui->grouplist->count() ; ++i)
+    {
+        if(newGroup.newGroupName() == groupnames[i])
+            return;
+    }
+
+
     for(int i=0 ; i<this->list.size() ; i++)
     {
         if(newGroup.newGroupName() == this->list[i]->getType())
@@ -424,9 +438,12 @@ void MainWindow::on_savebutton_clicked()
         return;
     }
     QFile data ("data.txt");
+
     
     data.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&data);
+
+    out.setCodec("UTF-8");
 
     for(int i=0 ; i<this->list.size()+ ui->grouplist->count() + 1 ; i++)
     {
@@ -436,18 +453,18 @@ void MainWindow::on_savebutton_clicked()
             if(i == this->list.size() - 1 && ui->grouplist->count() == 0)
             {
                 out << this->list[i]->getName() << ','
-                                                  << this->list[i]->getType() << ','
-                                                  << this->list[i]->getProductionCompany() << ','
-                                                  << this->list[i]->getPrice() << ','
-                                                  << this->list[i]->getPrice();
+                    << this->list[i]->getType() << ','
+                    << this->list[i]->getProductionCompany() << ','
+                    << this->list[i]->getPrice() << ','
+                    << this->list[i]->getQuantity() << '\n';
             }
             else
             {
                 out << this->list[i]->getName() << ','
-                                                  << this->list[i]->getType() << ','
-                                                  << this->list[i]->getProductionCompany() << ','
-                                                  << this->list[i]->getPrice() << ','
-                                                  << this->list[i]->getPrice() << '\n';
+                    << this->list[i]->getType() << ','
+                    << this->list[i]->getProductionCompany() << ','
+                    << this->list[i]->getPrice() << ','
+                    << this->list[i]->getQuantity() << '\n';
             }
         }
         else

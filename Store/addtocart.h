@@ -24,7 +24,7 @@ private slots:
 private:
     Ui::AddToCart *ui;
 
-    int quantity;
+    int quantity = 0;
 };
 
 #endif // ADDTOCART_H
