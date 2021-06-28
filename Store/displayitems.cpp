@@ -23,7 +23,7 @@ void DisplayItems::Display_items(QVector<Item *> &itemsVector)
         ui->itemsText->append(QString::number(i+1) + ". " + "Name = " + itemsVector[i]->getName() + '\n'
                               +"    " + "Type = " + itemsVector[i]->getType() + '\n'
                               +"    " + "Production Company = " + itemsVector[i]->getProductionCompany() + '\n'
-                              +"    " + "Price = " + QString::number(itemsVector[i]->getPrice()) + '\n'
+                              +"    " + "Price = " + QString::number(itemsVector[i]->getPrice()) + "$" + '\n'
                               +"    " + "Quantity = " + QString::number(itemsVector[i]->getQuantity()) + '\n');
     }
 }

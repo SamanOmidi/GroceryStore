@@ -65,7 +65,7 @@ void SearchItem::on_findbutton_clicked()
                     ui->searchText->append(QString::number(count) + ". " + "Name = " + this->list[i]->getName() + '\n'
                                            +"    " + "Type = " + this->list[i]->getType() + '\n'
                                            +"    " + "Production Company = " + this->list[i]->getProductionCompany() + '\n'
-                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + '\n'
+                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + "$" + '\n'
                                            +"    " + "Quantity = " + QString::number(this->list[i]->getQuantity()) + '\n');
                     count ++;
                 }
@@ -108,7 +108,7 @@ void SearchItem::on_findbutton_clicked()
                     ui->searchText->append(QString::number(count) + ". " + "Name = " + this->list[i]->getName() + '\n'
                                            +"    " + "Type = " + this->list[i]->getType() + '\n'
                                            +"    " + "Production Company = " + this->list[i]->getProductionCompany() + '\n'
-                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + '\n'
+                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + "$" + '\n'
                                            +"    " + "Quantity = " + QString::number(this->list[i]->getQuantity()) + '\n');
                     count ++;
                 }
@@ -151,7 +151,7 @@ void SearchItem::on_findbutton_clicked()
                     ui->searchText->append(QString::number(count) + ". " + "Name = " + this->list[i]->getName() + '\n'
                                            +"    " + "Type = " + this->list[i]->getType() + '\n'
                                            +"    " + "Production Company = " + this->list[i]->getProductionCompany() + '\n'
-                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + '\n'
+                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + "$" + '\n'
                                            +"    " + "Quantity = " + QString::number(this->list[i]->getQuantity()) + '\n');
                     count ++;
                 }
@@ -194,7 +194,7 @@ void SearchItem::on_findbutton_clicked()
                     ui->searchText->append(QString::number(count) + ". " + "Name = " + this->list[i]->getName() + '\n'
                                            +"    " + "Type = " + this->list[i]->getType() + '\n'
                                            +"    " + "Production Company = " + this->list[i]->getProductionCompany() + '\n'
-                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + '\n'
+                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + "$" + '\n'
                                            +"    " + "Quantity = " + QString::number(this->list[i]->getQuantity()) + '\n');
                     count ++;
                 }
@@ -236,7 +236,7 @@ void SearchItem::on_findbutton_clicked()
                     ui->searchText->append(QString::number(count) + ". " + "Name = " + this->list[i]->getName() + '\n'
                                            +"    " + "Type = " + this->list[i]->getType() + '\n'
                                            +"    " + "Production Company = " + this->list[i]->getProductionCompany() + '\n'
-                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + '\n'
+                                           +"    " + "Price = " + QString::number(this->list[i]->getPrice()) + "$" + '\n'
                                            +"    " + "Quantity = " + QString::number(this->list[i]->getQuantity()) + '\n');
                     count ++;
                 }

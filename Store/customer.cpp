@@ -53,7 +53,7 @@ void Customer::handleItemClicked(QListWidgetItem *productlist)
 
     if(index != -1)
     {
-        ui->price->setText(QString::number(list[index]->getPrice()));
+        ui->price->setText(QString::number(list[index]->getPrice()) + "$");
         ui->quantity->setText(QString::number(list[index]->getQuantity()));
     }
 }
@@ -286,11 +286,15 @@ void Customer::on_buybutton_clicked()
     }
 
     //warn the user buying process has beed done successfully
+    if(boughtQuantity > 0){
     QMessageBox BoughtSuccess;
     BoughtSuccess.setText("You Have Successfully Bought " + QString::number(boughtQuantity) + " of " + list[index]->getName() + " with\n total price of "
                           + QString::number(boughtQuantity*ui->price->text().toInt())+'.');
     BoughtSuccess.show();
     BoughtSuccess.exec();
+    }
+    else
+        return;
 
     //setting the new quantity
     //if the new quantity is < 0 we should remove it from vector and product list and also need to check group list
