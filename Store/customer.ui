@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>369</width>
+    <width>453</width>
     <height>405</height>
    </rect>
   </property>
@@ -168,7 +168,7 @@
        <widget class="QPushButton" name="buybutton">
         <property name="font">
          <font>
-          <pointsize>11</pointsize>
+          <pointsize>10</pointsize>
          </font>
         </property>
         <property name="autoFillBackground">
@@ -183,7 +183,19 @@
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer">
+       <widget class="QPushButton" name="receiptbutton">
+        <property name="font">
+         <font>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Receipt</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -192,7 +204,7 @@
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>170</width>
+          <width>180</width>
           <height>20</height>
          </size>
         </property>
@@ -200,6 +212,12 @@
       </item>
       <item>
        <widget class="QPushButton" name="musicbutton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
         <property name="styleSheet">
          <string notr="true">border-radius:10px;
 background:rgb(255, 255, 255);</string>
@@ -213,7 +231,7 @@ background:rgb(255, 255, 255);</string>
         </property>
         <property name="iconSize">
          <size>
-          <width>40</width>
+          <width>20</width>
           <height>25</height>
          </size>
         </property>

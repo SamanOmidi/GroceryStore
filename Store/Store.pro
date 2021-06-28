@@ -21,6 +21,7 @@ SOURCES += \
     loginpage.cpp \
     main.cpp \
     mainwindow.cpp \
+    receipt.cpp \
     searchgroups.cpp \
     searchitem.cpp \
     sellitem.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     item.h \
     loginpage.h \
     mainwindow.h \
+    receipt.h \
     searchgroups.h \
     searchitem.h \
     sellitem.h \
@@ -54,6 +56,7 @@ FORMS += \
     edititem.ui \
     loginpage.ui \
     mainwindow.ui \
+    receipt.ui \
     searchgroups.ui \
     searchitem.ui \
     sellitem.ui \

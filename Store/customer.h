@@ -9,6 +9,7 @@
 #include "customerlogin.h"
 #include "item.h"
 #include "addtocart.h"
+#include "receipt.h"
 
 
 
@@ -41,6 +42,8 @@ private slots:
 
     void on_musicbutton_clicked();
 
+    void on_receiptbutton_clicked();
+
 private:
     Ui::Customer *ui;
 
@@ -57,6 +60,10 @@ private:
     bool musicPlay = true;
     QMediaPlayer music;
 
+
+    //for receipt
+    Receipt receiptPage;
+    double sum = 0;
 };
 
 #endif // CUSTOMER_H

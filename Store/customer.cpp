@@ -241,6 +241,16 @@ void Customer::on_musicbutton_clicked()
 
 
 
+
+//showing receiptPage
+void Customer::on_receiptbutton_clicked()
+{
+    this->receiptPage.setModal(true);
+    this->receiptPage.exec();
+}
+
+
+
 //buying an item
 void Customer::on_buybutton_clicked()
 {
@@ -287,11 +297,16 @@ void Customer::on_buybutton_clicked()
 
     //warn the user buying process has beed done successfully
     if(boughtQuantity > 0){
-    QMessageBox BoughtSuccess;
-    BoughtSuccess.setText("You Have Successfully Bought " + QString::number(boughtQuantity) + " of " + list[index]->getName() + " with\n total price of "
-                          + QString::number(boughtQuantity*ui->price->text().toInt())+'.');
-    BoughtSuccess.show();
-    BoughtSuccess.exec();
+        QMessageBox BoughtSuccess;
+        BoughtSuccess.setText("You Have Successfully Bought " + QString::number(boughtQuantity) + " of " + list[index]->getName() + " with\n total price of "
+                              + QString::number(boughtQuantity*list[index]->getPrice()) + "$" +'.');
+        BoughtSuccess.show();
+        BoughtSuccess.exec();
+        QString temp = "You have bought " + QString::number(boughtQuantity) + " of " + list[index]->getName() + " with total price of "
+                + QString::number(boughtQuantity*list[index]->getPrice()) + "$" +'.';
+        receiptPage.addtextBrowser(temp);
+        this->sum += boughtQuantity*list[index]->getPrice();
+        receiptPage.setpricelabel(sum);
     }
     else
         return;
@@ -312,5 +327,3 @@ void Customer::on_buybutton_clicked()
     //saving new changes
     SaveItems();
 }
-
-
