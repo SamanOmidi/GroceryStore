@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     if(this->musicPlay)
     {
         QMediaPlaylist * playlist = new QMediaPlaylist();
-        playlist->addMedia(QUrl("qrc:/music/MJ AIR TIME - Andy Quin   Up Market (Music From NBA Films).mp3"));
+        playlist->addMedia(QUrl("qrc:/music/Akira.Senju-Tsuki.sayu.Yoru-Fu.rin.Ka.zan-(FuLLKade.COM).mp3"));
         playlist->setPlaybackMode(QMediaPlaylist::Loop);
         music.setPlaylist(playlist);
         music.play();
@@ -40,6 +40,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addnewitembutton_clicked()
 {
+    //making a new item * and send it to additem page
+    //then pushing back that item *
     Item * newItem = nullptr;
     AddItem AddItem(newItem , nullptr);
     AddItem.setModal(true);
@@ -52,7 +54,6 @@ void MainWindow::on_addnewitembutton_clicked()
 }
 
 //checking group list
-
 void MainWindow::checkGrouplist()
 {
     bool exist = false;
@@ -82,12 +83,13 @@ void MainWindow::checkGrouplist()
 
 void MainWindow::loadItems()
 {
+    //if user didn't login, it won't load the products
     if(this->user == "")
         return;
+
+    //opening data.txt and reading products and group names, then load them into the program
     QFile file ("data.txt");
     file.open(QIODevice::ReadOnly | QIODevice::Text);
-
-    //QTextStream in(&file);
 
     QString line;
     QStringList temp;
@@ -129,11 +131,9 @@ void MainWindow::loadItems()
 
 
 //removing selected item on the list
-
 void MainWindow::on_removeitembutton_clicked()
 {
     //check if we have any item
-    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -154,21 +154,24 @@ void MainWindow::on_removeitembutton_clicked()
     }
     
     //remove selected item
-    
     int index = ui->productlist->currentRow();
     if(index >= 0)
     {
         Item* theItem = list.at(index);
         delete theItem;
+        //removing from vector
         list.removeAt(index);
         
+        //removing from product list
         delete ui->productlist->currentItem();
     }
+
+    //checking if we need to change groups
     checkGrouplist();
 }
 
-//running login page at the start of program
 
+//running login page at the start of program
 void MainWindow::runLoginPage()
 {
     StartOfProgram = false;
@@ -179,11 +182,9 @@ void MainWindow::runLoginPage()
 }
 
 //display all items infos
-
 void MainWindow::on_displaybutton_clicked()
 {
     //check if we have any item
-    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -193,18 +194,19 @@ void MainWindow::on_displaybutton_clicked()
         return;
     }
     
+
     DisplayItems display;
     display.Display_items(list);
     display.setModal(true);
     display.exec();
 }
 
-//sell an item to a customer
 
+//sell an item to a customer
 void MainWindow::on_sellbutton_clicked()
 {
+
     //check if we have any item
-    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -214,6 +216,7 @@ void MainWindow::on_sellbutton_clicked()
         return;
     }
     
+
     //check if an item is selected
     if(ui->productlist->selectedItems().count() == 0)
     {
@@ -229,23 +232,28 @@ void MainWindow::on_sellbutton_clicked()
     sellpage.setModal(true);
     sellpage.exec();
 
+    //removing the item if customer bought all of it
+    //like remove function
     if(list[index]->getQuantity() <= 0)
     {
         Item* theItem = list.at(index);
         delete theItem;
+        //removing from vector
         list.removeAt(index);
 
+        //removing from product list
         delete ui->productlist->currentItem();
     }
+    //checking if we need to change groups
     checkGrouplist();
 }
 
-//edit an item
 
+//edit an item
 void MainWindow::on_edititembutton_clicked()
 {
+
     //check if we have any item
-    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -255,6 +263,7 @@ void MainWindow::on_edititembutton_clicked()
         return;
     }
     
+
     //check if an item is selected
     if(ui->productlist->selectedItems().count() == 0)
     {
@@ -265,6 +274,7 @@ void MainWindow::on_edititembutton_clicked()
         return;
     }
     
+
     int index = ui->productlist->currentRow();
     EditItem editPage(list,index);
     editPage.setModal(true);
@@ -273,15 +283,15 @@ void MainWindow::on_edititembutton_clicked()
     {
         ui->productlist->currentItem()->setText(this->list[index]->getName());
     }
+
+    //checking if we need to change groups
     checkGrouplist();
 }
 
 //search among items
-
 void MainWindow::on_searchitemsbutton_clicked()
 {
     //check if we have any item
-    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -296,13 +306,15 @@ void MainWindow::on_searchitemsbutton_clicked()
     searchPage.exec();
 }
 
-// music of program
 
+// music of program
 void MainWindow::playMusic()
 {
     music.play();
 }
 
+
+//stop the music if user clicked on music button
 void MainWindow::on_musicbutton_clicked()
 {
     if(this->musicPlay)
@@ -317,12 +329,11 @@ void MainWindow::on_musicbutton_clicked()
     }
 }
 
-//add the name of the group to the list in the main program.
 
+//add the name of the group to the list in the main program.
 void MainWindow::on_addnewgroupbutton_clicked()
 {
     //check if we have any item
-    
     if(list.size() <= 0)
     {
         QMessageBox error;
@@ -332,16 +343,22 @@ void MainWindow::on_addnewgroupbutton_clicked()
         return;
     }
     
+
     AddNewGroup newGroup(list);
     newGroup.setModal(true);
     newGroup.exec();
+
+    //for checking if user input exists in products category/type names
     bool validName = false;
+
+
     //saving group names to a vector of strings
     QVector<QString> groupnames;
     for(int i=0 ; i<ui->grouplist->count() ; ++i)
     {
         groupnames.push_back(ui->grouplist->item(i)->text());
     }
+
     //checking the grouplist for not similar group names
     for(int i=0 ; i<ui->grouplist->count() ; ++i)
     {
@@ -349,7 +366,7 @@ void MainWindow::on_addnewgroupbutton_clicked()
             return;
     }
 
-
+    //checking for valid name
     for(int i=0 ; i<this->list.size() ; i++)
     {
         if(newGroup.newGroupName() == this->list[i]->getType())
@@ -359,6 +376,7 @@ void MainWindow::on_addnewgroupbutton_clicked()
             break;
         }
     }
+    //warn the user that has inputed invalid names
     if(validName == false && newGroup.newGroupName() != "")
     {
         QMessageBox error;
@@ -369,12 +387,11 @@ void MainWindow::on_addnewgroupbutton_clicked()
     }
 }
 
-//display products of a group.
 
+//display products of a group.
 void MainWindow::on_displaygroupitemsbutton_clicked()
 {
     //check if we have any groups
-    
     if(ui->grouplist->count() <= 0)
     {
         QMessageBox error;
@@ -394,6 +411,7 @@ void MainWindow::on_displaygroupitemsbutton_clicked()
         return;
     }
     
+
     QString groupName = ui->grouplist->currentItem()->text();
     DisplayGroupProducts displayPage(this->list,groupName);
     displayPage.setModal(true);
@@ -403,8 +421,8 @@ void MainWindow::on_displaygroupitemsbutton_clicked()
 
 void MainWindow::on_searchgroupsbutton_clicked()
 {
+
     //check if we have any groups
-    
     if(ui->grouplist->count() <= 0)
     {
         QMessageBox error;
@@ -414,6 +432,7 @@ void MainWindow::on_searchgroupsbutton_clicked()
         return;
     }
     
+    //saving grouplist names in a vector and sending that vector to groupsearchPage
     QVector<QString> groupsName;
     for(int i=0 ; i<ui->grouplist->count() ; i++)
     {
@@ -425,10 +444,11 @@ void MainWindow::on_searchgroupsbutton_clicked()
     groupsearchPage.exec();
 }
 
+//saving store products and groups
 void MainWindow::on_savebutton_clicked()
 {
+
     //check if user has loged in
-    
     if(this->user == "")
     {
         QMessageBox error;
@@ -437,12 +457,14 @@ void MainWindow::on_savebutton_clicked()
         error.exec();
         return;
     }
+
     QFile data ("data.txt");
 
-    
     data.open(QIODevice::WriteOnly | QIODevice::Text);
+
     QTextStream out(&data);
 
+    //for saving persian names
     out.setCodec("UTF-8");
 
     for(int i=0 ; i<this->list.size()+ ui->grouplist->count() + 1 ; i++)

@@ -3,10 +3,13 @@
 
 #include <QListWidget>
 #include <QMainWindow>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include <QVector>
 #include "customerlogin.h"
 #include "item.h"
 #include "addtocart.h"
+
 
 
 namespace Ui {
@@ -31,8 +34,12 @@ public:
 
     void SaveItems();
 
+    void playMusic();
+
 private slots:
     void on_buybutton_clicked();
+
+    void on_musicbutton_clicked();
 
 private:
     Ui::Customer *ui;
@@ -45,6 +52,11 @@ private:
 
     //saving the username of the person is using the program
     QString user;
+
+    //music of the program
+    bool musicPlay = true;
+    QMediaPlayer music;
+
 };
 
 #endif // CUSTOMER_H

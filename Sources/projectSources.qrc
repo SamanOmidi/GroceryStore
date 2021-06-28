@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/music">
-        <file>MJ AIR TIME - Andy Quin   Up Market (Music From NBA Films).mp3</file>
+        <file>Akira.Senju-Tsuki.sayu.Yoru-Fu.rin.Ka.zan-(FuLLKade.COM).mp3</file>
     </qresource>
     <qresource prefix="/images">
-        <file>BackGround.jpg</file>
         <file>musicIcon4.png</file>
+        <file>Wood-Wallpaper.jpg</file>
     </qresource>
 </RCC>

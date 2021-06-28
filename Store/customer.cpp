@@ -27,6 +27,17 @@ Customer::Customer(QWidget *parent) :
 
     //filling quantity and price label
     connect(ui->productlist , &QListWidget::itemClicked , this , &Customer::handleItemClicked);
+
+
+    //start music at the start of program
+    if(this->musicPlay)
+    {
+        QMediaPlaylist * playlist = new QMediaPlaylist();
+        playlist->addMedia(QUrl("qrc:/music/Akira.Senju-Tsuki.sayu.Yoru-Fu.rin.Ka.zan-(FuLLKade.COM).mp3"));
+        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+        music.setPlaylist(playlist);
+        music.play();
+    }
 }
 
 Customer::~Customer()
@@ -96,7 +107,6 @@ void Customer::SaveItems()
 
     data.close();
 }
-
 
 //load the items to the list
 void Customer::loaditems()
@@ -207,6 +217,29 @@ void Customer::runLoginPage()
     user = loginPage.username();
 }
 
+//play the stopped music
+void Customer::playMusic()
+{
+    this->music.play();
+}
+
+
+//music of the program
+void Customer::on_musicbutton_clicked()
+{
+    if(this->musicPlay)
+    {
+        this->musicPlay = false;
+        music.pause();
+    }
+    else
+    {
+        this->musicPlay = true;
+        playMusic();
+    }
+}
+
+
 
 //buying an item
 void Customer::on_buybutton_clicked()
@@ -275,3 +308,5 @@ void Customer::on_buybutton_clicked()
     //saving new changes
     SaveItems();
 }
+
+

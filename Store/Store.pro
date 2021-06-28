@@ -4,6 +4,7 @@ QT       += multimedia
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++11
+CONFIG += resources_big
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
