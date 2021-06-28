@@ -388,6 +388,16 @@ void MainWindow::on_addnewgroupbutton_clicked()
 }
 
 
+void MainWindow::on_removergroupname_clicked()
+{
+    //delete the group
+    delete ui->grouplist->currentItem();
+    //checking group list for being sure
+    checkGrouplist();
+}
+
+
+
 //display products of a group.
 void MainWindow::on_displaygroupitemsbutton_clicked()
 {
@@ -510,4 +520,3 @@ void MainWindow::on_savebutton_clicked()
     data.close();
 
 }
-

@@ -487,6 +487,24 @@ border-radius: 4px;
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="removergroupname">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background:rgb(240,233,214);
+border-radius: 4px;
+
+</string>
+          </property>
+          <property name="text">
+           <string>Remove Group Name</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="verticalSpacer_5">
           <property name="orientation">
            <enum>Qt::Vertical</enum>

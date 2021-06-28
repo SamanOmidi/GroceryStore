@@ -62,6 +62,8 @@ private slots:
 
     void on_musicbutton_clicked();
 
+    void on_removergroupname_clicked();
+
 private:
     Ui::MainWindow *ui;
 
