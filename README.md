@@ -1,2 +1,5 @@
 # GroceryStore
-Gui store inventory app which you can do -> adding items , removing , editing , ....
+Gui Grocery Store
+You can add items , removing them , ... 
+//Please don't mind the commits messages , they are so silly.
+
