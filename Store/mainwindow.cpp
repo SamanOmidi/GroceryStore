@@ -46,6 +46,26 @@ void MainWindow::on_addnewitembutton_clicked()
     AddItem AddItem(newItem , nullptr);
     AddItem.setModal(true);
     AddItem.exec();
+    //check for not similar item
+    bool exist = false;
+    for(int i=0 ; i<list.size() ; ++i)
+    {
+        if(newItem->getName() == list[i]->getName()
+                && newItem->getType() == list[i]->getType()
+                && newItem->getProductionCompany() == list[i]->getProductionCompany()
+                && newItem->getPrice() == list[i]->getPrice()
+                && newItem->getQuantity() == list[i]->getQuantity()){
+            exist = true;
+        }
+    }
+    if(exist == true)
+    {
+        QMessageBox error;
+        error.setText("You Cannot Have Similar Items.");
+        error.show();
+        error.exec();
+        return;
+    }
     if(newItem != nullptr)
     {
         list.push_back(newItem);

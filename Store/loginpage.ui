@@ -20,15 +20,20 @@
    <string>Login</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">#loginbutton
+   <string notr="true">#loginpage
 {
-	border-radius: 10px;
-  	background: #BADA55;
+background-color:rgb(223, 223, 223);
+}
+
+#loginbutton
+{
+	border-radius: 5px;
+  	background: rgb(148, 162, 255);;
 }
 #registerbutton
 {
-	border-radius: 10px;
-  	background: #BADA55;
+	border-radius: 5px;
+  	background:  rgb(148, 162, 255);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -84,6 +89,11 @@
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
         </widget>
        </item>
        <item>
@@ -93,6 +103,11 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>11</pointsize>
+          </font>
          </property>
          <property name="echoMode">
           <enum>QLineEdit::Password</enum>

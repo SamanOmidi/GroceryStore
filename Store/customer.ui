@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>SmN Store</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:rgb(221, 255, 215);</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
@@ -50,7 +53,11 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QListWidget" name="productlist"/>
+           <widget class="QListWidget" name="productlist">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QListWidget" name="grouplist"/>
@@ -89,7 +96,12 @@
           <property name="font">
            <font>
             <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Price:</string>
@@ -101,7 +113,12 @@
           <property name="font">
            <font>
             <pointsize>11</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Quantity:</string>
@@ -119,6 +136,9 @@
             <pointsize>11</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:white;</string>
+          </property>
           <property name="frameShape">
            <enum>QFrame::Box</enum>
           </property>
@@ -133,6 +153,9 @@
            <font>
             <pointsize>11</pointsize>
            </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color:white;</string>
           </property>
           <property name="frameShape">
            <enum>QFrame::Box</enum>
